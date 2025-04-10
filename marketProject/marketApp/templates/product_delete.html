@@ -1,41 +1,9 @@
-<!-- shop/templates/shop/product_delete.html -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ post.title }} 삭제</title>
-  <style>
-    .product-card {
-      width: 500px;
-      background-color: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 20px;
-      margin: 20px;
-    }
-    .product-card h2 {
-      margin-top: 0;
-    }
-    .btn-area {
-      margin-top: 10px;
-    }
-    .btn-area button,
-    .btn-area a {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 6px 12px;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-delete { background-color: #dc3545; }
-    .btn-list { background-color: #6c757d; }
-  </style>
-</head>
-<body>
-  <h2>5. 상품 제거하기</h2>
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} 삭제{% endblock %}
+
+{% block content %}
+  <h2>상품 제거하기</h2>
 
   <div class="product-card">
     <h3>상품 삭제</h3>
@@ -52,5 +20,4 @@
       </div>
     </form>
   </div>
-</body>
-</html>
+{% endblock %}

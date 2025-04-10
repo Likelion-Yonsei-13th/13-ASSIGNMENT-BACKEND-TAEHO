@@ -1,41 +1,9 @@
-<!-- shop/templates/shop/product_detail.html -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ post.name }} 상세정보</title>
-  <style>
-    .product-card {
-      width: 500px;
-      background-color: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 20px;
-      margin: 20px;
-    }
-    .product-card h2 {
-      margin-top: 0;
-    }
-    .price {
-      color: #28a745; /* 초록색 계열 */
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-    .btn-area a {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 6px 12px;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #fff;
-    }
-    .btn-edit { background-color: #007bff; }
-    .btn-delete { background-color: #dc3545; }
-    .btn-list { background-color: #6c757d; }
-  </style>
-</head>
-<body>
-  <h2>3. 개별 상품 조회하기</h2>
+{% extends "base.html" %}
+
+{% block title %}{{ post.name }} 상세정보{% endblock %}
+
+{% block content %}
+  <h2>개별 상품 조회하기</h2>
 
   <div class="product-card">
     <!-- 상품명 -->
@@ -56,5 +24,4 @@
       <a href="{% url 'home' %}" class="btn-list">목록으로</a>
     </div>
   </div>
-</body>
-</html>
+{% endblock %}
