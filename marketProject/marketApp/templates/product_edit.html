@@ -1,72 +1,27 @@
-<!-- shop/templates/shop/product_edit.html -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ post.title }} 수정</title>
-  <style>
-    .product-card {
-      width: 500px;
-      background-color: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 20px;
-      margin: 20px;
-    }
-    .product-card h2 {
-      margin-top: 0;
-    }
-    .btn-area {
-      margin-top: 10px;
-    }
-    .btn-area button,
-    .btn-area a {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 6px 12px;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-save { background-color: #28a745; }
-    .btn-list { background-color: #6c757d; }
+{% extends 'base.html' %}
 
-    /* 폼 스타일 */
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input, textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-  </style>
-</head>
-<body>
-  <h2>4. 등록한 상품 수정하기</h2>
+{% block title %}{{ post.title }} 수정{% endblock %}
 
-  <div class="product-card">
+{% block content %}
+  <h2>등록한 상품 수정하기</h2>
+
+  <div class="product-card" style="width: 500px; background-color: #fafafa; border: 1px solid #ddd; border-radius: 4px; padding: 20px; margin: 20px;">
     <h3>상품 수정</h3>
     <form method="POST">
       {% csrf_token %}
       <label for="id_title">상품명</label>
-      <input type="text" id="id_title" name="title" value="{{ post.title }}" required>
+      <input type="text" id="id_title" name="title" value="{{ post.title }}" required style="width:100%; margin-bottom:10px; padding:8px; box-sizing:border-box;">
 
       <label for="id_content">상품 설명</label>
-      <textarea id="id_content" name="content" rows="3">{{ post.content }}</textarea>
+      <textarea id="id_content" name="content" rows="3" style="width:100%; margin-bottom:10px; padding:8px; box-sizing:border-box;">{{ post.content }}</textarea>
 
       <label for="id_price">가격</label>
-      <input type="number" id="id_price" name="price" step="0.01" value="{{ post.price }}" required>
+      <input type="number" id="id_price" name="price" step="0.01" value="{{ post.price }}" required style="width:100%; margin-bottom:10px; padding:8px; box-sizing:border-box;">
 
-      <div class="btn-area">
-        <button type="submit" class="btn-save">저장</button>
-        <a href="{% url 'home' %}" class="btn-list">목록으로</a>
+      <div class="btn-area" style="margin-top:10px;">
+        <button type="submit" class="btn-save" style="display:inline-block; margin-right:10px; padding:6px 12px; border-radius:4px; text-decoration:none; color:#fff; background-color:#28a745; border:none; cursor:pointer;">저장</button>
+        <a href="{% url 'home' %}" class="btn-list" style="display:inline-block; margin-right:10px; padding:6px 12px; border-radius:4px; text-decoration:none; color:#fff; background-color:#6c757d;">목록으로</a>
       </div>
     </form>
   </div>
-</body>
-</html>
+{% endblock %}

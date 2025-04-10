@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'posts': posts})
 
 def post_create(request):
 
@@ -13,14 +14,17 @@ def post_create(request):
         title = request.POST.get('title')
         content = request.POST.get('content')
 
-        Post.objects.create(price=price, title=title, content=content)
+        Post.objects.create(user=request.user, price=price, title=title, content=content)
         return redirect('home')
     
     return render(request, 'create.html')
 
 def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'home.html', {'posts' : posts})
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(user=request.user)
+    else:
+        posts = Post.objects.none()
+    return render(request, 'home.html', {'posts': posts})
 
 def product_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
